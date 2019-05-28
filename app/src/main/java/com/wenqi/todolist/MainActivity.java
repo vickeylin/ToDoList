@@ -5,7 +5,10 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wenqi.todolist.db.TaskContract;
 import com.wenqi.todolist.db.TaskDbHelper;
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     private TaskDbHelper mHelper;
     private ListView mTaskListView;
     private ArrayAdapter<String> mAdapter;
+    private int mCount = 0;
+    private TextView mShowCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +46,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mHelper = new TaskDbHelper(this);
         mTaskListView = (ListView) findViewById(R.id.list_todo);
+        mShowCount = (TextView) findViewById(R.id.textView_showcount);
 
         updateUI();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,7 +61,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
     }
 
@@ -117,16 +122,18 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment fragment;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_work) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_project) {
+
+        } else if (id == R.id.nav_else) {
 
         } else if (id == R.id.nav_share) {
 
@@ -134,9 +141,8 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
 
     public void deleteTask(View view) {
@@ -176,5 +182,17 @@ public class MainActivity extends AppCompatActivity
 
         cursor.close();
         db.close();
+    }
+
+    public void showToast(View view) {
+        Toast toast = Toast.makeText(this,R.string.toast_message,Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void countUp(View view) {
+        mCount++;
+        if (mShowCount != null){
+            mShowCount.setText(Integer.toString(mCount));
+        }
     }
 }
