@@ -10,12 +10,17 @@
 
     <ListView
         android:id="@+id/list_todo"
-        android:layout_width="wrap_content"
-        android:layout_height="419dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_showcount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
     <Button
         android:id="@+id/button_toast"
@@ -23,40 +28,39 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="28dp"
         android:background="@color/colorPrimary"
+        android:onClick="showToast"
         android:text="@string/button_label_toast"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="showToast"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_count"
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
+        android:onClick="countUp"
         android:text="@string/button_label_count"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/button_toast"
+        app:layout_constraintEnd_toStartOf="@+id/textView_showcount"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_todo"
-        app:layout_constraintVertical_bias="0.48"
-        android:onClick="countUp"/>
+        app:layout_constraintTop_toBottomOf="@+id/list_todo" />
 
     <TextView
         android:id="@+id/textView_showcount"
-        android:layout_width="194dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="12dp"
         android:background="@android:color/darker_gray"
         android:gravity="center"
         android:text="@string/count_initial_value"
@@ -65,10 +69,6 @@
         android:textSize="100sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button_toast"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
-        app:layout_constraintStart_toEndOf="@+id/button_count"
-        app:layout_constraintTop_toBottomOf="@+id/list_todo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
